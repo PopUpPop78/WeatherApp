@@ -17,6 +17,11 @@ terraform {
   }
 }
 
+variable "imagebuild" {
+  type = string
+  description = "Latest image build"
+}
+
 resource "azurerm_resource_group" "tf_test" {
     name = "tfmainresourcegroup"
     location = "centralus"
@@ -33,7 +38,7 @@ resource "azurerm_container_group" "tfcg_group" {
 
   container {
       name = "weatherapi"
-      image = "popuppop/weatherapi"
+      image = "popuppop/weatherapi:${var.imagebuild}"
       cpu = "1"
       memory = "1"
       environment_variables = {
