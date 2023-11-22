@@ -18,6 +18,7 @@ public class ErrorModel : PageModel
     {
         _logger = logger;
         _logger.LogInformation("Hello World");
+        _logger.LogInformation("Hello World");
     }
 
     public void OnGet()
