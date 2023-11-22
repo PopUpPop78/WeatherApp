@@ -10,6 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  imagename: 'weatherapi'
 
 stages:
 - stage: Build
@@ -23,7 +24,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Docker Hub'
-        repository: 'popuppop/weatherapi'
+        repository: popuppop/$(imagename)
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
@@ -52,3 +53,4 @@ stages:
         ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
         ARM_TENANT_ID: $(ARM_TENANT_ID)
         TF_VAR_imagebuild: $(tag)
+        TF_VAR_imagename: $(imagename)

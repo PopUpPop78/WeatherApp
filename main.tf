@@ -22,13 +22,18 @@ variable "imagebuild" {
   description = "Latest image build"
 }
 
+variable "imagename" {
+  type = string
+  description = "Image name"
+}
+
 resource "azurerm_resource_group" "tf_test" {
     name = "tfmainresourcegroup"
     location = "centralus"
 }
 
 resource "azurerm_container_group" "tfcg_group" {
-  name = "weatherapi"
+  name = var.imagename
   location = azurerm_resource_group.tf_test.location
   resource_group_name = azurerm_resource_group.tf_test.name
   
@@ -37,8 +42,8 @@ resource "azurerm_container_group" "tfcg_group" {
   os_type = "Linux"
 
   container {
-      name = "weatherapi"
-      image = "popuppop/weatherapi:${var.imagebuild}"
+      name = var.imagename
+      image = "${var.imagename}:${var.imagebuild}"
       cpu = "1"
       memory = "1"
       environment_variables = {
