@@ -19,8 +19,6 @@ stages:
     displayName: Build
     pool:
       name: Default
-    #pool:
-    #  vmImage: ubuntu-latest
     steps:
     - task: Docker@2
       inputs:
@@ -36,10 +34,8 @@ stages:
   jobs:
   - job: Provision
     displayName: Provisioning container instance
-    #pool:
-    #  name: Default
     pool:
-      vmImage: ubuntu-latest
+      name: Default
     variables:
     - group: TerraformServicePrincipal
     steps:
