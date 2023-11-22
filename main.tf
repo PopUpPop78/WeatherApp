@@ -3,6 +3,12 @@ provider "azurerm" {
 }
 
 terraform {
+  backend "azurerm" {
+    resource_group_name = "tf_rg_blobs_store"
+    storage_account_name = "tfstorageaccountpopuppop"
+    container_name = "tfstate"
+    key = "terraform.tfstate"
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
