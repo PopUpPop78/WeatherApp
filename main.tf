@@ -43,7 +43,7 @@ resource "azurerm_container_group" "tfcg_group" {
 
   container {
       name = var.imagename
-      image = "${var.imagename}:${var.imagebuild}"
+      image = "popuppop/${var.imagename}:${var.imagebuild}"
       cpu = "1"
       memory = "1"
       environment_variables = {
